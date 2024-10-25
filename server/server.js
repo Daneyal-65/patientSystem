@@ -27,7 +27,7 @@ app.use((err, req, res, next) => {
 
 // Catch-all route for unmatched endpoints
 app.use((req, res, next) => {
-  res.status(404).json({ message: "Endpoint not found" });
+  res.status(404).json({ message: "Endpoint not found", flag: "hosted" });
 });
 
 // Set the port from environment or use default 5000
