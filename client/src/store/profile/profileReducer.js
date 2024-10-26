@@ -85,7 +85,7 @@ const profileSlice = createSlice({
       const { userId, token, email } = action.payload;
       state.token = token;
       state.userId = userId;
-      state.userName = "@" + email.substring(0, email.length - 10);
+      state.userName = "@" + email?.substring(0, email.length - 10);
       state.email = email;
     },
     toggleSideBar: (state) => {

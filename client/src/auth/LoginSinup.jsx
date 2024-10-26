@@ -56,13 +56,13 @@ const LoginSignup = () => {
             JSON.stringify({ token: data.token, userId: data.userId, email })
           );
           toast.success("login Successful! welocome to patient System !", {
-            position: "top-right",
+            position: "top-center",
           });
           window.location.href = "/";
         } else {
           setErorrs((pre) => ({
             ...pre,
-            message: data.message,
+            message: "username or password is invalid !!",
           }));
         }
       } else {
@@ -74,13 +74,13 @@ const LoginSignup = () => {
             JSON.stringify({ token: data.token, userId: data.userId })
           );
           toast.success("Singup Successful! welocome to patient System !", {
-            position: "top-right",
+            position: "top-center",
           });
           window.location.href = "/";
         } else {
           setErorrs((pre) => ({
             ...pre,
-            message: data.message,
+            message: "username or password is invalid !!",
           }));
         }
         // console.log(data);
@@ -90,7 +90,7 @@ const LoginSignup = () => {
       setRememberMe("");
     } else {
       toast.error("error - something went wrong", {
-        position: "top-right",
+        position: "top-center",
       });
     }
     setIsLoading(false);

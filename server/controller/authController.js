@@ -40,6 +40,7 @@ export const registerUser = async (req, res) => {
       message: "User registered successfully",
       userId: result.insertedId,
       token,
+      email,
     });
   } catch (error) {
     console.error("Error registering user:", error);
