@@ -12,6 +12,7 @@ dotenv.config();
 const app = express();
 
 // Middleware to parse incoming requests with JSON payloads
+
 app.use(express.json());
 app.use(cors());
 
