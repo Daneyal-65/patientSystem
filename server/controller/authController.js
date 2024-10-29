@@ -144,7 +144,7 @@ export const createUserProfile = async (req, res) => {
       userId,
       updated, // userId should be part of the request (e.g., from JWT or session)
     } = req.body;
-
+    // console.log("userId=>>>>>>>>>>>>>>>>>>>>>>>>>>>", userId);
     // Cast userId to ObjectId
     const objectId = new ObjectId(userId);
 
@@ -171,7 +171,7 @@ export const createUserProfile = async (req, res) => {
         }
       );
       return res
-        .status(200)
+        .status(201)
         .json({ message: "User profile updated successfully" });
     } else {
       // Create new user profile

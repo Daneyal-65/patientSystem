@@ -50,6 +50,7 @@ const LoginSignup = () => {
     if (isValid) {
       if (isLogin) {
         const data = await login(credential);
+        // console.log(data.data.message);
         if (data?.token) {
           localStorage.setItem(
             "userdata",
@@ -62,7 +63,7 @@ const LoginSignup = () => {
         } else {
           setErorrs((pre) => ({
             ...pre,
-            message: "username or password is invalid !!",
+            message: data?.data?.message || "something went wrong",
           }));
         }
       } else {
@@ -71,7 +72,11 @@ const LoginSignup = () => {
         if (data?.token) {
           localStorage.setItem(
             "userdata",
-            JSON.stringify({ token: data.token, userId: data.userId })
+            JSON.stringify({
+              token: data.token,
+              userId: data.userId,
+              email: data.email,
+            })
           );
           toast.success("Singup Successful! welocome to patient System !", {
             position: "top-center",
@@ -80,7 +85,7 @@ const LoginSignup = () => {
         } else {
           setErorrs((pre) => ({
             ...pre,
-            message: "username or password is invalid !!",
+            message: data?.data?.message || "something went wrong",
           }));
         }
         // console.log(data);

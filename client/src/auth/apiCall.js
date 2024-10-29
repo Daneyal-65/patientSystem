@@ -12,7 +12,8 @@ const signup = async (formData) => {
     console.log("Signup successful", res.data);
     return res.data;
   } catch (err) {
-    console.log(err.response.data);
+    // console.log(err.response.data);
+    return err.response; // This should include the error message if failed
   }
 };
 
@@ -31,8 +32,9 @@ const login = async (formData) => {
     //   "Login failed",
     //   err.response ? err.response.data : err.message
     // );
-    console.log(err);
+    // console.log(err);
     // return { message: err.response ? err.response.data : err.message };
+    return err.response;
   }
 };
 export { login, signup };
