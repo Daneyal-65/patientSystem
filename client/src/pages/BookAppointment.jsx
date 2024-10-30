@@ -1,33 +1,40 @@
 import React, { useEffect, useState, useRef } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import useDateTime from "../hooks/useDateTime";
+import DatePicker from "react-datepicker"; // Importing DatePicker component
+import "react-datepicker/dist/react-datepicker.css"; // Importing DatePicker styles
+import useDateTime from "../hooks/useDateTime"; // Custom hook for handling date and time
 import { useDispatch, useSelector } from "react-redux";
-import { submitAppointments } from "../store/appointments/appointmentSlice";
-import { departments, doctors } from "../constant/data";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { submitAppointments } from "../store/appointments/appointmentSlice"; // Action to submit appointments
+import { departments, doctors } from "../constant/data"; // Department and doctor data (assumed to be pre-defined)
+import { toast, ToastContainer } from "react-toastify"; // For displaying toast notifications
+import "react-toastify/dist/ReactToastify.css"; // Importing Toastify styles
 
 const BookAppointment = () => {
+  // Getting user details from Redux store
   const user = useSelector((state) => state.profile);
   const dispatch = useDispatch();
-  const { date, time, getDateTime } = useDateTime();
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [department, setDepartment] = useState("");
-  const [doctor, setDoctor] = useState("");
-  const [comments, setComments] = useState("");
-  const fileInputRef = useRef(null); // Use ref for file input
-  const isLoading = useSelector((state) => state.userAppointments.loading);
 
-  // Validate file type directly when needed
+  // Using custom hook to get date and time values
+  const { date, time, getDateTime } = useDateTime();
+
+  // State variables for form inputs
+  const [selectedDate, setSelectedDate] = useState(new Date()); // For storing selected date
+  const [department, setDepartment] = useState(""); // Selected department
+  const [doctor, setDoctor] = useState(""); // Selected doctor
+  const [comments, setComments] = useState(""); // Comments input
+  const fileInputRef = useRef(null); // Reference to file input element
+  const isLoading = useSelector((state) => state.userAppointments.loading); // Check if the form is in loading state
+
+  // Function to validate file type (only allows JPEG and PNG)
   const validateFile = (file) => {
     const allowedTypes = ["image/jpeg", "image/png"];
     return file && allowedTypes.includes(file.type);
   };
 
-  // Validation function to ensure required fields are filled
+  // Validation function to ensure required fields are filled and valid
   const isValidForm = () => {
-    const selectedFile = fileInputRef.current.files[0];
+    const selectedFile = fileInputRef.current.files[0]; // Getting selected file
+
+    // Check if required fields are filled and valid
     if (!date || !time || !department || !comments || !selectedFile) {
       toast.error("Please fill out all required fields!", {
         position: "top-center",
@@ -49,36 +56,41 @@ const BookAppointment = () => {
     return true;
   };
 
+  // Effect hook to update date and time when selectedDate changes
   useEffect(() => {
     getDateTime(selectedDate);
   }, [selectedDate, getDateTime]);
 
   // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent default form submission behavior
 
     // Validate form before submission
     if (!isValidForm()) return;
 
-    const selectedFile = fileInputRef.current.files[0];
+    const selectedFile = fileInputRef.current.files[0]; // Get the selected file
 
+    // Create a new appointment object with all required data
     const newAppointment = {
-      token: user.token,
+      token: user.token, // Adding user token
       date: date,
       time: time,
       department,
-      doctor: doctors[department],
+      doctor: doctors[department], // Getting doctor based on selected department
       comments,
-      file: selectedFile,
-      name: user.firstName,
+      file: selectedFile, // Adding file to the form data
+      name: user.firstName, // Adding user's first name
     };
 
+    // Dispatch the action to submit the appointment
     dispatch(submitAppointments(newAppointment));
+
+    // Display success toast message
     toast.success("Appointment created successfully!", {
       position: "top-center",
     });
 
-    // Reset the form after submission
+    // Reset form fields after successful submission
     setComments("");
     setDepartment("");
     setDoctor("");
@@ -96,8 +108,10 @@ const BookAppointment = () => {
         <h2 className="text-2xl font-semibold text-center text-gray-800 mb-1">
           Book an Appointment
         </h2>
+
+        {/* Form for booking appointment */}
         <form onSubmit={handleSubmit} encType="multipart/form-data">
-          {/* Date Picker */}
+          {/* Date Picker for selecting appointment date */}
           <div className="mb-1">
             <label className="block text-gray-700 font-medium mb-1">
               Select Date*
@@ -111,7 +125,7 @@ const BookAppointment = () => {
             />
           </div>
 
-          {/* Department Dropdown */}
+          {/* Dropdown for selecting department */}
           <div className="mb-1">
             <label className="block text-gray-700 font-medium mb-1">
               Department*
@@ -131,7 +145,7 @@ const BookAppointment = () => {
             </select>
           </div>
 
-          {/* Doctor Dropdown */}
+          {/* Dropdown for selecting doctor */}
           <div className="mb-1">
             <label className="block text-gray-700 font-medium mb-1">
               Doctor*
@@ -140,7 +154,7 @@ const BookAppointment = () => {
               value={doctor}
               onChange={(e) => setDoctor(e.target.value)}
               className="w-full p-1 border border-gray-300 rounded-md"
-              disabled={true}
+              disabled={true} // Disabled as doctor is auto-selected based on department
             >
               <option value={department && doctors[department][0]}>
                 {department && doctors[department].name}
@@ -148,7 +162,7 @@ const BookAppointment = () => {
             </select>
           </div>
 
-          {/* File Upload */}
+          {/* File upload for uploading medical reports */}
           <div className="mb-1">
             <label className="block text-gray-700 font-medium mb-1">
               Upload Reports*
@@ -163,7 +177,7 @@ const BookAppointment = () => {
             />
           </div>
 
-          {/* Comments Text Area */}
+          {/* Text area for adding comments */}
           <div className="mb-2">
             <label className="block text-gray-700 font-medium mb-1">
               Comments*
@@ -178,7 +192,7 @@ const BookAppointment = () => {
             />
           </div>
 
-          {/* Submit Button */}
+          {/* Submit button to book appointment */}
           <button
             type="submit"
             className="w-full bg-purple-600 text-white p-2 rounded-md hover:bg-purple-700 transition"
@@ -187,7 +201,7 @@ const BookAppointment = () => {
           </button>
         </form>
       </div>
-      <ToastContainer />
+      <ToastContainer /> {/* Container to display toast notifications */}
     </div>
   );
 };

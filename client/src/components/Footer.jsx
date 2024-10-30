@@ -3,22 +3,23 @@ import { ModelComponent } from "../ui/Model";
 import Modal from "../ui/Model";
 import { modalData } from "../constant/data";
 export default function Footer() {
+  // states
   const [isOpen, setIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
   const [modalTitle, setModalTitle] = useState("");
-
+  //  handling modal content
   const openModal = (content, title) => {
     setModalContent(content);
     setModalTitle(title);
     setIsOpen(true);
   };
-
+  // toggle modal content
   const closeModal = () => {
     setIsOpen(false);
     setModalContent(null);
     setModalTitle("");
   };
-  const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear(); // default date
 
   return (
     <>

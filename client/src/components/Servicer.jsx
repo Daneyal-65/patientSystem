@@ -4,18 +4,19 @@ import { healthcareServices } from "../constant/data"; // Assuming the object is
 import { ModelComponent } from "../ui/Model"; // Importing ModelComponent
 
 function Services() {
+  // initialize states
   const [isOpen, setIsOpen] = useState(false);
   const [modalTitle, setModalTitle] = useState("");
   const [modalSummary, setModalSummary] = useState("");
   const [modalContact, setModalContact] = useState("");
-
+  // handle the modal contents
   const openModal = (service) => {
     setModalTitle(service.title);
     setModalSummary(service.summary);
     setModalContact(service.contactNumber);
     setIsOpen(true);
   };
-
+  // toggle the modal
   const closeModal = () => {
     setIsOpen(false);
     setModalTitle("");

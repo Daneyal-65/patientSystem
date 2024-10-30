@@ -2,10 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 const AppointmentCard = ({ appointment }) => {
+  // sestructures all the properties for dispaly on ui
   const { date, doctor, name, department, img } = appointment;
   // console.log(appointment);
   // Converting the image buffer to base64
-  const base64Image = img;
+  const base64Image = img; // flag this image is a base64
 
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden w-80 m-4">

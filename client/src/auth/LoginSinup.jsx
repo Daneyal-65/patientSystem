@@ -5,6 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const LoginSignup = () => {
+  // initialize the local states
   const [email, setEmail] = useState("");
   const [errors, setErorrs] = useState({
     emailErorr: "",
@@ -15,7 +16,7 @@ const LoginSignup = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-
+  // validation for email and  password
   const validateForm = () => {
     const newErrors = {};
     if (!email) {
@@ -56,6 +57,7 @@ const LoginSignup = () => {
             "userdata",
             JSON.stringify({ token: data.token, userId: data.userId, email })
           );
+          // gieve a tost message for successful
           toast.success("login Successful! welocome to patient System !", {
             position: "top-center",
           });
@@ -78,6 +80,7 @@ const LoginSignup = () => {
               email: data.email,
             })
           );
+          // gieve a tost message for successful
           toast.success("Singup Successful! welocome to patient System !", {
             position: "top-center",
           });
@@ -94,6 +97,7 @@ const LoginSignup = () => {
       setPassword("");
       setRememberMe("");
     } else {
+      // gieve a tost message for error
       toast.error("error - something went wrong", {
         position: "top-center",
       });

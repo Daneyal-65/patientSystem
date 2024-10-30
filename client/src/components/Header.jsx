@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleSideBar } from "../store/profile/profileReducer";
 import { Link } from "react-router-dom";
 export default function Header() {
-  const dispatch = useDispatch();
-  const menu = useSelector((state) => state.profile.sideBar);
+  const dispatch = useDispatch(); // dispatcher toggles sidebar
+  const menu = useSelector((state) => state.profile.sideBar); // get current state
   return (
     <div className="app-container">
       <header className="bg-purple-600 text-white p-4 flex justify-between items-center">

@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../store/profile/profileReducer";
 
 const Profile = () => {
-  const profile = useSelector((state) => state.profile);
-  const dispatch = useDispatch();
+  const profile = useSelector((state) => state.profile); // get the profile from store
+  const dispatch = useDispatch(); // dispatcher to update profile
   return (
     <div className="profile-container p-4 md:max-w-[30rem]">
       <h1 className="text-2xl font-bold mb-4">User Profile</h1>

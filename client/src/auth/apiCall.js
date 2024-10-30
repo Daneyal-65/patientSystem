@@ -1,6 +1,7 @@
 import axios from "axios";
 import { authApi } from "./config";
-
+// api calls for authentication
+// using axios login/signup
 const signup = async (formData) => {
   try {
     const res = await axios.post(`${authApi}/register`, formData, {
