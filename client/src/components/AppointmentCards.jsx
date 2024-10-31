@@ -7,6 +7,7 @@ const AppointmentCard = ({ appointment }) => {
   // console.log(appointment);
   // Converting the image buffer to base64
   const base64Image = img; // flag this image is a base64
+  const doc = { ...JSON.parse(doctor) }; // flag this image is a base64
 
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden w-80 m-4">
@@ -34,13 +35,13 @@ const AppointmentCard = ({ appointment }) => {
       <div className="p-4 bg-blue-600 text-white">
         <h3 className="text-lg font-semibold">Doctor Details</h3>
         <p>
-          <strong>Name:</strong> {doctor?.name}
+          <strong>Name:</strong> {doc?.name}
         </p>
         <p>
           <strong>Department:</strong> {department}
         </p>
         <p>
-          <strong>Rating:</strong> {doctor?.rating}
+          <strong>Rating:</strong> {doc?.rating}
         </p>
 
         <button className="bg-white text-blue-600 rounded-lg px-4 py-2 font-bold mt-4 hover:bg-blue-500 hover:text-white">

@@ -9,6 +9,7 @@ import ProtectedRoute from "./auth/Protected";
 import Dashboard from "./pages/Dashboard";
 import MyAppointments from "./pages/MyAppointments";
 import { useDispatch, useSelector } from "react-redux";
+import PatientPage from "./pages/Patient";
 import {
   fetchProfileData,
   setUseridAndToken,
@@ -78,6 +79,7 @@ function App() {
               }
             />
             <Route path="/login-signup" element={<LoginSignup />} />
+            <Route path="/patient" element={<PatientPage />} />
           </Routes>
         </main>
       </Router>

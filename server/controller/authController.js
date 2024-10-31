@@ -200,3 +200,18 @@ export const createUserProfile = async (req, res) => {
     });
   }
 };
+export const getPatient = async (req, res) => {
+  try {
+    const users = db.collection("user");
+
+    // Convert the cursor to an array
+    const userDetails = await users.find({}).toArray();
+
+    res.status(200).json({ users: userDetails });
+  } catch (error) {
+    console.error("Error fetching user profile:", error);
+    res
+      .status(500)
+      .json({ message: "Error fetching user profile", error: error.message });
+  }
+};

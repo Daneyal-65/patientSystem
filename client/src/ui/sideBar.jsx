@@ -66,10 +66,13 @@ function Sidebar() {
           {(user.firstName + " " + user.lastName).toUpperCase()}
         </li>
         <li className="text-sm font-sans text-[#801414]">{user.userName}</li>
-        <li className="flex items-center gap-1 px-8 py-1 mt-2 rounded-full bg-blue-950 text-white border-none outline-none hover:bg-black hover:font-bold">
+        <a
+          href="/patient"
+          className="flex items-center gap-1 px-8 py-1 mt-2 rounded-full bg-blue-950 text-white border-none outline-none hover:bg-black hover:font-bold"
+        >
           <FiHeart />
           <span>Patient</span>
-        </li>
+        </a>
         <li>
           <button
             onClick={() => {

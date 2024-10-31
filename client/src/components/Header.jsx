@@ -46,12 +46,12 @@ export default function Header() {
           >
             Book an appointment
           </Link>
-          <Link
-            to="/appointments"
+          <a
+            href="/appointments"
             className="bg-white text-purple-600 px-4 py-2 rounded-full text-sm font-medium hover:bg-purple-100 transition-colors"
           >
             My appointment
-          </Link>
+          </a>
         </nav>
       </header>
       <aside className={`sidebar ${menu ? "open" : "closed"} `}>

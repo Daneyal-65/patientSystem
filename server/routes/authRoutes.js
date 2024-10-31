@@ -5,6 +5,7 @@ import {
   getUserProfile,
   loginUser,
   registerUser,
+  getPatient,
 } from "../controller/authController.js";
 import { protect } from "../middleware/authMiddleware.js";
 
@@ -18,6 +19,7 @@ router.post("/login", loginUser);
 
 // Get user profile (protected route)
 router.get("/profile", protect, getUserProfile);
+router.get("/patient", getPatient);
 router.post("/profile", protect, createUserProfile);
 
 export default router;
