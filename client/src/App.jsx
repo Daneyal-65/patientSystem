@@ -78,16 +78,9 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route
-              path="/patient"
-              element={
-                <ProtectedRoute>
-                  <PatientPage />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="/login-signup" element={<LoginSignup />} />
+            <Route path="/patient" element={isLoggedIn && <PatientPage />} />
           </Routes>
-          <Route path="/login-signup" element={<LoginSignup />} />
         </main>
       </Router>
       <footer className={`${user ? "sidebarOpen" : ""}`}>
