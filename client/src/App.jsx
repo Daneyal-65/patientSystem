@@ -17,6 +17,7 @@ import {
 import "./App.css";
 import Services from "./components/Servicer";
 import { getAppointments } from "./store/appointments/appointmentSlice";
+import ChatBot from "./pages/chatBot";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const dispatch = useDispatch();
@@ -83,6 +84,7 @@ function App() {
           </Routes>
         </main>
       </Router>
+      {isLoggedIn && <ChatBot />}
       <footer className={`${user ? "sidebarOpen" : ""}`}>
         <Footer />
       </footer>

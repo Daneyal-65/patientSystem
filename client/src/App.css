@@ -56,3 +56,10 @@ button:active {
   transform: translateX(13rem);
   transition: transform 0.6s ease-in-out;
 }
+.hide-scroll {
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer */
+}
+.hide-scroll::-webkit-scrollbar {
+  display: none; /* For WebKit browsers */
+}
