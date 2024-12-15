@@ -26,12 +26,15 @@ const ChatBot = () => {
   });
   return (
     <div>
-      <div className="fixed bottom-5 right-5 bg-red-600 rounded-full shadow-2xl animate-bounce overflow-hidden z-30">
+      <div
+        className={`fixed bottom-5 right-5 bg-red-600 rounded-full shadow-2xl  overflow-hidden z-30
+        ${!active ? "animate-bounce" : ""}`}
+      >
         <button
           className="font-black text-white text-xl p-3 hover:bg-blue-700 transition"
           onClick={() => setActive(!active)}
         >
-          ChatBot
+          {!active ? "ChatBot" : "Close"}
         </button>
       </div>
       {active && (
@@ -41,7 +44,7 @@ const ChatBot = () => {
         >
           <ul
             className="w-[23rem] p-4 md:w-[30rem] rounded-md px-6 shadow-2xl overflow-scroll max-h-[500px] 
-          mt-24 bg-[#eae5e5] hide-scroll my-10 min-h-[400px]"
+          mt-24 bg-[#eae5e5] hide-scroll  min-h-[400px]"
           >
             <li className="text-xl text-pretty underline font-black">
               Chat With Ai Docter
